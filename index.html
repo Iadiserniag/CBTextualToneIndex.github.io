@@ -37,7 +37,7 @@ body {
 }
 
 .hero {
-    background-color: #CBDFF7; /* main blue background */
+    background-color: #CBDFF7;  /* main blue background */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,32 +45,27 @@ body {
     padding: 60px 20px 80px 20px;
     width: 100%;
     text-align: center;
+    position: relative; /* for pseudo-element */
 
-    /* Logo as background */
-    background-image: url('assets/logo.png');
-    background-repeat: no-repeat;
-    background-position: center 50%; /* centered horizontally, slightly down vertically */
-    background-size: 150px 150px;   /* adjust size */
-    opacity: 1; /* keep hero content visible */
-
-    /* Overlay trick for semi-transparent logo */
-    position: relative;
+    /* remove previous background-image */
 }
 
+/* Pseudo-element for the transparent logo */
 .hero::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('assets/logo_ecb.png');
+    background-image: url('assets/logo.png'); /* your uploaded logo */
     background-repeat: no-repeat;
-    background-position: center 50%;
-    background-size: 150px 150px;
-    opacity: 0.1;          /* make the logo transparent */
-    z-index: 0;             /* behind text */
+    background-position: center center;
+    background-size: cover;  /* make logo cover the entire hero */
+    opacity: 0.05;           /* very subtle transparency */
+    z-index: 0;              /* behind content */
 }
 
+/* Make sure content is above the logo */
 .hero > * {
-    position: relative;    /* bring all children above the background logo */
+    position: relative;
     z-index: 1;
 }
 
@@ -105,7 +100,7 @@ body {
 }
     
 .buttons {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .button {
