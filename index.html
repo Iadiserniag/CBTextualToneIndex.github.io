@@ -1,3 +1,14 @@
+<!-- .hero {
+    background-color: #D4E7FF; /* blue rectangle behind entire hero */
+    display: flex;
+    flex-direction: column;     /* stack children vertically */
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically if needed */
+    padding: 60px 20px 80px 20px; /* top, sides, bottom */
+    width: 100%;
+    text-align: center;
+} -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +27,6 @@ body {
 
 /* HERO SECTION */
 
-.hero {
-    background-color: #D4E7FF; /* blue rectangle behind entire hero */
-    display: flex;
-    flex-direction: column;     /* stack children vertically */
-    align-items: center;        /* center horizontally */
-    justify-content: center;    /* center vertically if needed */
-    padding: 60px 20px 80px 20px; /* top, sides, bottom */
-    width: 100%;
-    text-align: center;
-}
-
 .hero h1 {
     color: #2F4F4F;
     font-size: 50px;
@@ -34,6 +34,44 @@ body {
     line-height: 1.2;
     margin-top: 20px;
     margin-bottom: 40px;
+}
+
+.hero {
+    background-color: #CBDFF7; /* main blue background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 80px 20px;
+    width: 100%;
+    text-align: center;
+
+    /* Logo as background */
+    background-image: url('assets/logo.png');
+    background-repeat: no-repeat;
+    background-position: center 50%; /* centered horizontally, slightly down vertically */
+    background-size: 150px 150px;   /* adjust size */
+    opacity: 1; /* keep hero content visible */
+
+    /* Overlay trick for semi-transparent logo */
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('assets/logo.png');
+    background-repeat: no-repeat;
+    background-position: center 50%;
+    background-size: 150px 150px;
+    opacity: 0.1;          /* make the logo transparent */
+    z-index: 0;             /* behind text */
+}
+
+.hero > * {
+    position: relative;    /* bring all children above the background logo */
+    z-index: 1;
 }
 
 .authors {
