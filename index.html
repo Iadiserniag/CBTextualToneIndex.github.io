@@ -71,6 +71,17 @@ body {
 }
 
 /* AUTHOR NAMES AND CV LINKS */
+.authors {
+    display: flex;
+    justify-content: center; /* center authors as a group */
+    flex-wrap: nowrap;       /* no wrapping */
+    gap: 100px;              /* space between authors */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start; /* vertically align names if multi-line */
+}
+    
 .authors .author strong,
 .authors .author strong a {
     font-size: 20px;        /* same size for names and links */
@@ -80,6 +91,12 @@ body {
 
 .authors .author strong a:hover {
     text-decoration: underline; /* underline only on hover */
+}
+
+.author {
+    display: flex;
+    flex-direction: column; /* stack name, affiliation, email vertically */
+    align-items: center;    /* center content within each author */
 }
 
 /* AFFILIATION */
