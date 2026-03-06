@@ -158,9 +158,31 @@ h2 {
 
 .paper-image {
     width: 100%;
+    max-width: 750px;  
+    display: block;
+    margin: 0 auto;
     border-radius: 8px;
-    box-shadow: none;
 }
+
+.formula {
+    text-align: center;
+    font-size: 22px;
+    margin: 30px auto;
+}
+
+.figure {
+    max-width: 750px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+figcaption {
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+    
 </style>
 </head>
 
@@ -215,38 +237,45 @@ h2 {
     
 <h2>Methodology</h2>
 
-    <p class="abstract">
+    <p class="container">
     We construct a textual tone index that quantifies the degree of hawkishness or dovishness in ECB monetary policy communication. 
     The methodology relies on a structured NLP pipeline applied to the full transcripts of ECB press conferences held after policy rate announcements between 2000 and 2025. 
     The NLP pipeline combines rule-based preprocessing and Transformer-based classification models to extract sentence-level information and aggregate it into a document-level tone score. :contentReference[oaicite:0]{index=0}
     </p>
 
-    <p class="abstract">
+    <p class="container">
     The pipeline consists of four main steps: sentence filtering, relevance classification, sentiment classification, and aggregation into a textual tone score index.
     </p>
 
+    <figure class="figure">
+        <img src="assets/pipeline_overview.png" alt="NLP pipeline" class="paper-image">
+        <figcaption>
+             Overview of the NLP pipeline for sentiment classification
+        </figcaption>
+    </figure>
+
     <h3>Step 1: First-Pass Relevance Filtering</h3>
-    <p class="abstract">
+    <p class="container">
     The first step consists of a preprocessing stage aimed at removing economically irrelevant sentences from the raw press conference transcripts, such as greetings, procedural statements, and journalists' questions. 
     </p>
 
     <h3>Step 2: Relevance Classification Model</h3>
-    <p class="abstract">
+    <p class="container">
     In the second step, a relevance classification model identifies whether each remaining sentence is directly related to monetary policy. 
     This model is trained using manually annotated data and distinguishes sentences that discuss policy decisions or instruments from those referring to broader economic conditions.
     </p>
 
     <h3>Step 3: Sentiment Classification Model</h3>
-    <p class="abstract">
+    <p class="container">
     In the third step, the sentences classified as relevant are processed by a sentiment classification model. 
     The model assigns each sentence one of five ordered sentiment labels representing the tone of the communication: strongly dovish, dovish, neutral, hawkish, and strongly hawkish.
     </p>
 
     <h3>Step 4: Textual Tone Score Index Construction</h3>
-    <p class="abstract">
+    <p class="container">
         In the final step of the pipeline, sentence-level predictions are aggregated to compute a single textual tone score for each press conference. 
     </p>
-    <p class="abstract">
+    <p class="container">
     The tone score for press conference \(i\) is computed as a weighted average of the sentence-level tone predictions:
     </p>
     <p class="formula">
@@ -256,11 +285,11 @@ h2 {
     \]
     </p>
     
-    <p class="abstract">
+    <p class="container">
     where \(y_j\) represents the sentiment score assigned to sentence \(j\), \(w_j^{rel}\) denotes the relevance weight associated with the sentence, and \(N_i\) is the total number of sentences in press conference \(i\).
     </p>
 
-    <p class="abstract">
+    <p class="container">
         The resulting index summarizes the overall tone of the communication and produces a time series tracking the evolution of ECB monetary policy stance over time.
     </p>
 
